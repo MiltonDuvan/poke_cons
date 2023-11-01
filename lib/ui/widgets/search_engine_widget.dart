@@ -8,7 +8,7 @@ class SearchEngineWidget extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
-        color: Colors.blue,
+        color: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 10),
@@ -29,10 +29,10 @@ class SearchEngineWidget extends StatelessWidget {
       child: TextFormField(
         readOnly: true,
         decoration: InputDecoration(
-          fillColor: const Color(0XFFF6F6F6),
+          fillColor: Colors.black87,
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.transparent,
+              color: Colors.black,
             ),
             borderRadius: BorderRadius.all(
               Radius.circular(20),
@@ -40,26 +40,27 @@ class SearchEngineWidget extends StatelessWidget {
           ),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.transparent,
+              color: Colors.black,
             ),
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),
           ),
-          prefixIcon: const Icon(
+          prefixIcon:  Icon(
             Icons.search,
-            color: Colors.black,
-            size: 24,
+            color: Colors.white70,
+            size: MediaQuery.of(context).size.width * 0.055,
           ),
           contentPadding: const EdgeInsets.all(8),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.0),
             borderSide: BorderSide.none,
           ),
-          hintText: "ditto",
-          hintStyle: const TextStyle(
-            fontSize: 15,
+          hintText: "Busca algum pokemon",
+          hintStyle:  TextStyle(
+            fontSize: MediaQuery.of(context).size.width * 0.038,
             fontWeight: FontWeight.w300,
+            color: Colors.white70 
           ),
           filled: true,
         ),

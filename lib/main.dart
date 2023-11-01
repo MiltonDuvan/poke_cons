@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_cons/ui/views/404_page.dart';
-import 'package:poke_cons/ui/views/home_page.dart';
+import 'package:poke_cons/ui/views/welcome_screen.dart';
 import 'package:poke_cons/ui/views/pokemon_page.dart';
 import 'package:poke_cons/ui/views/pokemon_search_page.dart';
 
@@ -15,10 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/searchPage',
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(),
-        '/other': (context) => PokemonView(),
+        '/': (context) => const WelcomeScreenPage(),
+        '/home': (context) => PokemonView(),
         '/searchPage':(context) =>  PokemonSearchPage()
       },
       onGenerateRoute: (settings) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_cons/ui/views/404_page.dart';
+import 'package:poke_cons/ui/views/pokemon_detail.dart';
 import 'package:poke_cons/ui/views/welcome_screen.dart';
 import 'package:poke_cons/ui/views/pokemon_page.dart';
 import 'package:poke_cons/ui/views/pokemon_search_page.dart';
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const WelcomeScreenPage(),
-        '/home': (context) => PokemonView(),
-        '/searchPage':(context) =>  PokemonSearchPage()
+        '/home': (context) => const PokemonView(),
+        '/searchPage':(context) =>  const PokemonSearchPage(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder:(context) => Page404(),);

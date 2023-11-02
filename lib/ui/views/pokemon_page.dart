@@ -33,19 +33,27 @@ class PokemonView extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final pokemonData = pokemonList[index];
                     final pokemonName = pokemonData['name'];
-                    final formattedName = pokemonName[0].toUpperCase() + pokemonName.substring(1);
+                    final formattedName =
+                        pokemonName[0].toUpperCase() + pokemonName.substring(1);
                     final pokemonUrl = pokemonData['url'];
                     return Padding(
-                      padding:EdgeInsets.only(
-                        top: MediaQuery.of(context).size.width * 0.03,bottom: MediaQuery.of(context).size.width * 0.03,
-                        left: MediaQuery.of(context).size.width * 0.06,right: MediaQuery.of(context).size.width * 0.06),
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.width * 0.03,
+                          bottom: MediaQuery.of(context).size.width * 0.03,
+                          left: MediaQuery.of(context).size.width * 0.06,
+                          right: MediaQuery.of(context).size.width * 0.06),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF6F6F6),
-                          border: Border.all(width: 0.03, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(12)
-                          
-                        ),
+                            color: const Color(0xFFF6F6F6),
+                            border: Border.all(width: 0.03, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 0.5,
+                                  blurRadius: 1.5,
+                                  offset: const Offset(0, 2))
+                            ]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -55,15 +63,16 @@ class PokemonView extends StatelessWidget {
                                   formattedName,
                                   style: TextStyle(
                                       fontSize:
-                                          MediaQuery.of(context).size.width * 0.045,
+                                          MediaQuery.of(context).size.width *
+                                              0.045,
                                       fontWeight: FontWeight.w400,
                                       fontFamily: 'Averta',
                                       color: Colors.black87),
                                 )),
                             TextButton(
                                 onPressed: () async {
-                                  final details =
-                                      await viewModel.getPokemonDetails(pokemonUrl);
+                                  final details = await viewModel
+                                      .getPokemonDetails(pokemonUrl);
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -76,7 +85,8 @@ class PokemonView extends StatelessWidget {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize:
-                                        MediaQuery.of(context).size.width * 0.03,
+                                        MediaQuery.of(context).size.width *
+                                            0.03,
                                   ),
                                 ))
                           ],

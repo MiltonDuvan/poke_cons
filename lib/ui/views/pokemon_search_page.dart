@@ -12,11 +12,27 @@ class PokemonSearchPage extends StatelessWidget {
       viewModelBuilder: () => PokemonViewmodel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          body: SafeArea(
-              child: SingleChildScrollView(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            automaticallyImplyLeading: false,
+            title: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const BackButton(
+                  color: Colors.black,
+                ),
+                _search(context, viewModel),
+              ],
+            ),
+          ),
+          body: SingleChildScrollView(
+              child: Center(
             child: Column(
               children: [
-                _search(context, viewModel),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.045,
+                ),
                 _pokemonList(context, viewModel),
               ],
             ),
@@ -31,17 +47,17 @@ class PokemonSearchPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.width * 0.3,
           width: MediaQuery.of(context).size.width * 0.7,
           child: TextFormField(
             onChanged: (text) {
               viewmodel.filterPokemon(text.toLowerCase());
             },
+            style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
-              fillColor: const Color(0XFFF6F6F6),
+              fillColor: Colors.black87,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.transparent,
+                  color: Colors.black,
                 ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
@@ -49,16 +65,16 @@ class PokemonSearchPage extends StatelessWidget {
               ),
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.transparent,
+                  color: Colors.black,
                 ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
                 ),
               ),
-              prefixIcon: const Icon(
+              prefixIcon: Icon(
                 Icons.search,
-                color: Colors.black,
-                size: 24,
+                color: Colors.white70,
+                size: MediaQuery.of(context).size.width * 0.055,
               ),
               contentPadding: const EdgeInsets.all(0),
               border: OutlineInputBorder(
@@ -66,10 +82,10 @@ class PokemonSearchPage extends StatelessWidget {
                 borderSide: BorderSide.none,
               ),
               hintText: "ditto",
-              hintStyle: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w300,
-              ),
+              hintStyle: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.038,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white),
               filled: true,
             ),
           ),
@@ -80,19 +96,41 @@ class PokemonSearchPage extends StatelessWidget {
 
   Widget _pokemonList(BuildContext context, PokemonViewmodel viewmodel) {
     return SizedBox(
-      width: 100,
-      height: 300,
+      width: MediaQuery.of(context).size.width - 40,
+      height: MediaQuery.of(context).size.width * 1.7,
       child: ListView.builder(
         itemCount: viewmodel.filteredPokemonList.length,
         itemBuilder: (context, index) {
           final pokemon = viewmodel.filteredPokemonList[index];
           return ListTile(
-            title: Text(pokemon['name']),
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.1),
+            visualDensity: VisualDensity.standard,
+            title: Container(
+              decoration:
+                  const BoxDecoration(border: Border(bottom: BorderSide(width: 0.3))),
+              child: Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.01, bottom: MediaQuery.of(context).size.width * 0.04),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      pokemon['name'],
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.045,
+                        fontWeight: FontWeight.w300
+                      ),
+                    ),
+                    const Icon(Icons.arrow_forward_ios)
+                  ],
+                ),
+              ),
+            ),
             onTap: () async {
-              final details = await  viewmodel.getPokemonDetails(pokemon['url']);
+              final details = await viewmodel.getPokemonDetails(pokemon['url']);
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PokemonDetailPage(
-                      details:details)));
+                  builder: (context) => PokemonDetailPage(details: details)));
             },
           );
         },

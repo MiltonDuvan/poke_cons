@@ -24,7 +24,7 @@ class SearchEngineWidget extends StatelessWidget {
 
   Widget _buscador(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.width * 0.1,
+      // height: MediaQuery.of(context).size.width * 0.1,
       width: MediaQuery.of(context).size.width * 0.7,
       child: TextFormField(
         readOnly: true,
@@ -56,7 +56,7 @@ class SearchEngineWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
             borderSide: BorderSide.none,
           ),
-          hintText: "Busca algum pokemon",
+          hintText: "Busca algun pokemon",
           hintStyle:  TextStyle(
             fontSize: MediaQuery.of(context).size.width * 0.038,
             fontWeight: FontWeight.w300,

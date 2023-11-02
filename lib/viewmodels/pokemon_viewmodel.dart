@@ -17,6 +17,7 @@ class PokemonViewmodel extends BaseViewModel {
   }
 
   Future<List<Map<String, dynamic>>> getPokemonList() async {
+    // pokemon?limit=100000&offset=0
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon'));
 

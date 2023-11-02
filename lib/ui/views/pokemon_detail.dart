@@ -14,142 +14,145 @@ class PokemonDetailPage extends StatelessWidget {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width - 30,
-            decoration: BoxDecoration(
-                color: const Color(0XFFF6F6F6),
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3))
-                ]),
-            child: Column(
-              children: [
-                spaceBetween(context),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const BackButton(),
-                    IconButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, 'goToMistake'),
-                        icon: const Icon(Icons.error_outline))
-                  ],
-                ),
-                spaceBetween(context),
-                Text(
-                  details.forms[0].name.toUpperCase(),
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.07,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87),
-                ),
-                Text(
-                  '${details.stats[0].baseStat} Hp',
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.055,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0XFF909090)),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.05,
-                ),
-                Image.network(
-                  '${details.sprites.other?.officialArtwork.frontDefault}',
-                  scale: 1.5,
-                ),
-                spaceBetween(context),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 0.8, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
-                    padding: EdgeInsets.all(
-                        MediaQuery.of(context).size.width * 0.01),
-                    child: Text(details.types[0].type.name,
-                        style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.05,
-                            fontWeight: FontWeight.bold)),
+          child: Padding(
+            padding:  EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),
+            child: Container(
+              width: MediaQuery.of(context).size.width - 30,
+              decoration: BoxDecoration(
+                  color: const Color(0XFFF6F6F6),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3))
+                  ]),
+              child: Column(
+                children: [
+                  spaceBetween(context),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const BackButton(),
+                      IconButton(
+                          onPressed: () =>
+                              Navigator.pushNamed(context, 'goToMistake'),
+                          icon: const Icon(Icons.error_outline))
+                    ],
                   ),
-                ),
-                spaceBetween(context),
-                pokemonInformation(context, 'Altura', '${details.height}'),
-                pokemonInformation(context, 'Peso', '${details.weight}'),
-                pokemonInformation(
-                    context, 'Experiencia', '${details.baseExperience}'),
-                spaceBetween(context),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          '${details.stats[1].baseStat}K',
+                  spaceBetween(context),
+                  Text(
+                    details.forms[0].name.toUpperCase(),
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.07,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87),
+                  ),
+                  Text(
+                    '${details.stats[0].baseStat} Hp',
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.055,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0XFF909090)),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.05,
+                  ),
+                  Image.network(
+                    '${details.sprites.other?.officialArtwork.frontDefault}',
+                    scale: 1.5,
+                  ),
+                  spaceBetween(context),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0.8, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.01),
+                      child: Text(details.types[0].type.name,
                           style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.045,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          'Ataque',
-                          style: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
-                              fontWeight: FontWeight.w300,
-                              color: Color(0XFF909090)),
-                        ),
-                      ],
+                              fontSize: MediaQuery.of(context).size.width * 0.05,
+                              fontWeight: FontWeight.bold)),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          '${details.stats[5].baseStat}K',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.045,
-                            fontWeight: FontWeight.bold,
+                  ),
+                  spaceBetween(context),
+                  pokemonInformation(context, 'Altura', '${details.height}'),
+                  pokemonInformation(context, 'Peso', '${details.weight}'),
+                  pokemonInformation(
+                      context, 'Experiencia', '${details.baseExperience}'),
+                  spaceBetween(context),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            '${details.stats[1].baseStat}K',
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'Velocidad',
-                          style: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
-                              fontWeight: FontWeight.w300,
-                              color: const Color(0XFF909090)),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '${details.stats[2].baseStat}K',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.045,
-                            fontWeight: FontWeight.bold,
+                          Text(
+                            'Ataque',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.04,
+                                fontWeight: FontWeight.w300,
+                                color: Color(0XFF909090)),
                           ),
-                        ),
-                        Text(
-                          'Defensa',
-                          style: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
-                              fontWeight: FontWeight.w300,
-                              color: const Color(0XFF909090)),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                spaceBetween(context),
-                spaceBetween(context)
-              ],
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            '${details.stats[5].baseStat}K',
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Velocidad',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.04,
+                                fontWeight: FontWeight.w300,
+                                color: const Color(0XFF909090)),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            '${details.stats[2].baseStat}K',
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Defensa',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.04,
+                                fontWeight: FontWeight.w300,
+                                color: const Color(0XFF909090)),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  spaceBetween(context),
+                  spaceBetween(context)
+                ],
+              ),
             ),
           ),
         ),

@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         '/searchPage':(context) =>  const PokemonSearchPage(),
       },
       onGenerateRoute: (settings) {
-        return MaterialPageRoute(builder:(context) => Page404(),);
+        return MaterialPageRoute(builder:(context) => const Page404(),);
       },
     );
   }

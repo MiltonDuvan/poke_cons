@@ -31,12 +31,15 @@ class PokemonDetailPage extends StatelessWidget {
             child: Column(
               children: [
                 spaceBetween(context),
-                const Row(
+                Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    BackButton(),
-                    IconButton(onPressed: null, icon: Icon(Icons.error_outline))
+                    const BackButton(),
+                    IconButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, 'goToMistake'),
+                        icon: const Icon(Icons.error_outline))
                   ],
                 ),
                 spaceBetween(context),

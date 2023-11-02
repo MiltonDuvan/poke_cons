@@ -94,7 +94,7 @@ class PokemonSearchPage extends StatelessWidget {
     );
   }
 
-  Widget _pokemonList(BuildContext context, PokemonViewmodel viewmodel) {
+  Widget _pokemonList(BuildContext context, PokemonViewmodel viewmodel) { 
     return SizedBox(
       width: MediaQuery.of(context).size.width - 40,
       height: MediaQuery.of(context).size.width * 1.7,

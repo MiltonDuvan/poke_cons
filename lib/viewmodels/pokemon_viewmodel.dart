@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 import 'package:poke_cons/core/models/pokemon_detail_model.dart';
 import 'package:stacked/stacked.dart';
 

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_cons/ui/views/pokemon_detail.dart';
 import 'package:poke_cons/viewmodels/pokemon_viewmodel.dart';
@@ -102,36 +103,38 @@ class PokemonSearchPage extends StatelessWidget {
         itemCount: viewmodel.filteredPokemonList.length,
         itemBuilder: (context, index) {
           final pokemon = viewmodel.filteredPokemonList[index];
-          return ListTile(
-            contentPadding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.1),
-            visualDensity: VisualDensity.standard,
-            title: Container(
-              decoration:
-                  const BoxDecoration(border: Border(bottom: BorderSide(width: 0.3))),
-              child: Padding(
-                padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.01, bottom: MediaQuery.of(context).size.width * 0.04),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      pokemon['name'],
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.045,
-                        fontWeight: FontWeight.w300
+          return BounceInLeft(
+            child: ListTile(
+              contentPadding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.1),
+              visualDensity: VisualDensity.standard,
+              title: Container(
+                decoration:
+                    const BoxDecoration(border: Border(bottom: BorderSide(width: 0.3))),
+                child: Padding(
+                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.01, bottom: MediaQuery.of(context).size.width * 0.04),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        pokemon['name'],
+                        style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.045,
+                          fontWeight: FontWeight.w300
+                        ),
                       ),
-                    ),
-                    const Icon(Icons.arrow_forward_ios)
-                  ],
+                      const Icon(Icons.arrow_forward_ios)
+                    ],
+                  ),
                 ),
               ),
+              onTap: () async {
+                final details = await viewmodel.getPokemonDetails(pokemon['url']);
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PokemonDetailPage(details: details)));
+              },
             ),
-            onTap: () async {
-              final details = await viewmodel.getPokemonDetails(pokemon['url']);
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PokemonDetailPage(details: details)));
-            },
           );
         },
       ),

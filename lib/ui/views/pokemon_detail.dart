@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_cons/core/models/pokemon_detail_model.dart';
 
@@ -45,26 +46,32 @@ class PokemonDetailPage extends StatelessWidget {
                     ],
                   ),
                   spaceBetween(context),
-                  Text(
-                    details.forms[0].name.toUpperCase(),
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.07,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87),
+                  FadeInDownBig(
+                    child: Text(
+                      details.forms[0].name.toUpperCase(),
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.07,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87),
+                    ),
                   ),
-                  Text(
-                    '${details.stats[0].baseStat} Hp',
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.055,
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0XFF909090)),
+                  BounceInDown(
+                    child: Text(
+                      '${details.stats[0].baseStat} Hp',
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.055,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0XFF909090)),
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  Image.network(
-                    '${details.sprites.other?.officialArtwork.frontDefault}',
-                    scale: 1.5,
+                  FadeIn(
+                    child: Image.network(
+                      '${details.sprites.other?.officialArtwork.frontDefault}',
+                      scale: 1.5,
+                    ),
                   ),
                   spaceBetween(context),
                   Container(
@@ -74,10 +81,12 @@ class PokemonDetailPage extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(
                           MediaQuery.of(context).size.width * 0.01),
-                      child: Text(details.types[0].type.name,
-                          style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.05,
-                              fontWeight: FontWeight.bold)),
+                      child: BounceInLeft(
+                        child: Text(details.types[0].type.name,
+                            style: TextStyle(
+                                fontSize: MediaQuery.of(context).size.width * 0.05,
+                                fontWeight: FontWeight.bold)),
+                      ),
                     ),
                   ),
                   spaceBetween(context),
@@ -86,68 +95,16 @@ class PokemonDetailPage extends StatelessWidget {
                   pokemonInformation(
                       context, 'Experiencia', '${details.baseExperience}'),
                   spaceBetween(context),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            '${details.stats[1].baseStat}K',
-                            style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.045,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Ataque',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.04,
-                                fontWeight: FontWeight.w300,
-                                color: Color(0XFF909090)),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            '${details.stats[5].baseStat}K',
-                            style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.045,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Velocidad',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.04,
-                                fontWeight: FontWeight.w300,
-                                color: const Color(0XFF909090)),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            '${details.stats[2].baseStat}K',
-                            style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.045,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Defensa',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.04,
-                                fontWeight: FontWeight.w300,
-                                color: const Color(0XFF909090)),
-                          ),
-                        ],
-                      )
-                    ],
+                  BounceInUp(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                       _attackDefenseSpeed(context, 'Ataque', '${details.stats[1].baseStat}K'),
+                       _attackDefenseSpeed(context, 'Velocidad', '${details.stats[5].baseStat}K'),
+                       _attackDefenseSpeed(context, 'Defensa', '${details.stats[2].baseStat}K'),
+                      ],
+                    ),
                   ),
                   spaceBetween(context),
                   spaceBetween(context)
@@ -167,35 +124,59 @@ class PokemonDetailPage extends StatelessWidget {
   }
 
   Widget pokemonInformation(BuildContext context, String title, String result) {
-    return Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.07),
-      child: Container(
-        width: MediaQuery.of(context).size.width - 80,
-        decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(width: 0.2)),
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.width * 0.002),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.045,
-                    fontWeight: FontWeight.w300),
-              ),
-              Text(result,
+    return BounceInLeft(
+      child: Padding(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.07),
+        child: Container(
+          width: MediaQuery.of(context).size.width - 80,
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(width: 0.2)),
+          ),
+          child: Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.width * 0.002),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.width * 0.045,
-                      fontWeight: FontWeight.w600))
-            ],
+                      fontWeight: FontWeight.w300),
+                ),
+                Text(result,
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.045,
+                        fontWeight: FontWeight.w600))
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _attackDefenseSpeed(BuildContext context, String label, String result){
+    return  Column(
+                        children: [
+                          Text(
+                            result,
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            label,
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.04,
+                                fontWeight: FontWeight.w300,
+                                color: const Color(0XFF909090)),
+                          ),
+                        ],
+                      );
   }
 }

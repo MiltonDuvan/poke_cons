@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:poke_cons/core/models/pokemon_detail_model.dart';
+import 'package:poke_cons/global/global_var.dart';
 import 'package:stacked/stacked.dart';
 
 class PokemonViewmodel extends BaseViewModel {
@@ -16,9 +17,7 @@ class PokemonViewmodel extends BaseViewModel {
   }
 
   Future<List<Map<String, dynamic>>> getPokemonList() async {
-    // pokemon?limit=100000&offset=0
-    final response =
-        await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon'));
+    final response = await http.get(Uri.parse(api));
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
